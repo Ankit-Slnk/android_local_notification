@@ -1,4 +1,4 @@
-package com.webbrains.localnotification;
+package com.ankit.localnotification;
 
 import org.junit.Test;
 

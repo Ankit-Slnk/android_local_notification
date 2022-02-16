@@ -1,4 +1,4 @@
-package com.webbrains.localnotification;
+package com.ankit.localnotification;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,8 +16,8 @@ import androidx.core.app.NotificationCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String APP_ACTION = "com.webbrains.localnotification";
-    private final String MEDIA_CHANNEL_ID = "com.webbrains.localnotification.order.placed.channel";
+    public static final String APP_ACTION = "com.ankit.localnotification";
+    private final String MEDIA_CHANNEL_ID = "com.ankit.localnotification.order.placed.channel";
     private NotificationManager notificationManager;
 
     @Override

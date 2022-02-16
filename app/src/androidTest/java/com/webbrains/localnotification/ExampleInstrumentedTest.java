@@ -1,4 +1,4 @@
-package com.webbrains.localnotification;
+package com.ankit.localnotification;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.webbrains.localnotification", appContext.getPackageName());
+        assertEquals("com.ankit.localnotification", appContext.getPackageName());
     }
 }

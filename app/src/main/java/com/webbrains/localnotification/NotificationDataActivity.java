@@ -1,4 +1,4 @@
-package com.webbrains.localnotification;
+package com.ankit.localnotification;
 
 import android.os.Bundle;
 import android.util.Log;
