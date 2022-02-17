@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtras(extras);
         // PENDING INTENT REQUESTCODE MUST BE UNIQUE
-        buildNotification(PendingIntent.getActivity(MainActivity.this, 1, intent, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_ONE_SHOT),
+        buildNotification(PendingIntent.getActivity(MainActivity.this, 1, intent, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_UPDATE_CURRENT),
                 "Local Notification",
                 "1 data");
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtras(extras);
         // PENDING INTENT REQUESTCODE MUST BE UNIQUE
-        buildNotification(PendingIntent.getActivity(MainActivity.this, 2, intent, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_ONE_SHOT),
+        buildNotification(PendingIntent.getActivity(MainActivity.this, 2, intent, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_UPDATE_CURRENT),
                 "Local Notification",
                 "2 data");
     }
