@@ -14,10 +14,16 @@
         android:onClick="onTap1Data"
         android:text="Notification with 1 data" />
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onTap2Data"
         android:text="Notification with 2 data" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onTapNotificationWithButton"
+        android:text="Notification with buttons" />
+
 </LinearLayout>

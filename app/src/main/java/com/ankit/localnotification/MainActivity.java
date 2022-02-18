@@ -28,26 +28,7 @@ public class MainActivity extends AppCompatActivity {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
 
-        // The id of the channel.
-        String id = MEDIA_CHANNEL_ID;
-        // The user-visible name of the channel.
-        CharSequence name = "Order Place";
-        // The user-visible description of the channel.
-        String description = "Order Place";
-        int importance;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            importance = NotificationManager.IMPORTANCE_LOW;
-        } else {
-            importance = NotificationManager.IMPORTANCE_DEFAULT;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
-            // Configure the notification channel.
-            mChannel.setDescription(description);
-            mChannel.setShowBadge(false);
-            mChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(mChannel);
-        }
+        createChannel();
     }
 
     public void onTap1Data(View view) {
@@ -77,6 +58,46 @@ public class MainActivity extends AppCompatActivity {
                 "2 data");
     }
 
+    public void onTapNotificationWithButton(View view) {
+        Intent intentOk = new Intent(MainActivity.this, NotificationDataActivity.class);
+        Bundle extrasOk = new Bundle();
+        extrasOk.putString("id", "OK");
+        intentOk.setAction(APP_ACTION);
+        intentOk.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intentOk.putExtras(extrasOk);
+
+        Intent intentCancel = new Intent(MainActivity.this, NotificationDataActivity.class);
+        Bundle extrasCancel = new Bundle();
+        extrasCancel.putString("id", "CANCEL");
+        intentCancel.setAction(APP_ACTION);
+        intentCancel.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intentCancel.putExtras(extrasCancel);
+
+        Intent intent = new Intent(MainActivity.this, NotificationDataActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("id", "7890");
+        intent.setAction(APP_ACTION);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtras(extras);
+
+        // Create a new Notification
+        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this, MEDIA_CHANNEL_ID)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."))
+                .setTicker(getResources().getString(R.string.app_name))
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("What is Lorem Ipsum?")
+                .setContentText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .addAction(new NotificationCompat.Action(0, "OK", PendingIntent.getActivity(MainActivity.this, 4, intentOk, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_UPDATE_CURRENT)))
+                .addAction(new NotificationCompat.Action(0, "CANCEL", PendingIntent.getActivity(MainActivity.this, 5, intentCancel, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_UPDATE_CURRENT)));
+
+        notificationBuilder.setContentIntent(PendingIntent.getActivity(MainActivity.this, 3, intent, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_UPDATE_CURRENT));
+
+        notificationManager.notify(123456, notificationBuilder.build());
+    }
+
     private void buildNotification(PendingIntent pendingIntent, String title, String subTitle) {
         // Create a new Notification
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this, MEDIA_CHANNEL_ID)
@@ -93,5 +114,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
         notificationManager.notify(12345, notificationBuilder.build());
+    }
+
+    public void createChannel() {
+        // The id of the channel.
+        String id = MEDIA_CHANNEL_ID;
+        // The user-visible name of the channel.
+        CharSequence name = "Order Place";
+        // The user-visible description of the channel.
+        String description = "Order Place";
+        int importance;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            importance = NotificationManager.IMPORTANCE_LOW;
+        } else {
+            importance = NotificationManager.IMPORTANCE_DEFAULT;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+            // Configure the notification channel.
+            mChannel.setDescription(description);
+            mChannel.setShowBadge(false);
+            mChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            notificationManager.createNotificationChannel(mChannel);
+        }
     }
 }
